@@ -8,6 +8,7 @@ before:
     - go generate ./...
 builds:
   - binary: fm
+    main: ./cmd/fm
     env:
       - CGO_ENABLED=0
     goos:
