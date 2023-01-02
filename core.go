@@ -26,4 +26,5 @@ const (
 var CmdMap = map[CmdName]Cmd{
 	HELP:    &HelpCmd{},
 	REVERSE: &ReverseCmd{},
+	COPY:    &CopyCmd{},
 }

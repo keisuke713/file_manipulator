@@ -3,15 +3,10 @@ package fm
 import (
 	"fmt"
 	"io"
-	"io/fs"
 	"os"
 )
 
 type ReverseCmd struct{}
-
-const (
-	dstName = "dst.txt"
-)
 
 func (r *ReverseCmd) Name() string {
 	return string(REVERSE)
@@ -48,7 +43,7 @@ func (r *ReverseCmd) Run(args []string) error {
 	if err != nil {
 		return nil
 	}
-	// io.Readerとio.Writerとしてos.Fileを渡す
+
 	if err := r.RunWithFile(in, out); err != nil {
 		return err
 	}
@@ -71,11 +66,4 @@ func (r *ReverseCmd) RunWithFile(in io.Reader, out io.Writer) error {
 
 func (r *ReverseCmd) Example() string {
 	return fmt.Sprintf("`%s %s %s %s`", BINARY_NAME, r.Name(), "input.txt", "output.txt")
-}
-
-func orCreate(args []string) (*os.File, error) {
-	if len(args) < 2 {
-		return os.Create(dstName)
-	}
-	return os.OpenFile(args[1], os.O_RDWR|os.O_CREATE, fs.ModePerm)
 }

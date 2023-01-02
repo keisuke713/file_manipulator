@@ -11,7 +11,7 @@ import (
 
 var _ = Describe("RunWithFile", func() {
 	var (
-		reverse fm.ReverseCmd
+		copy fm.CopyCmd
 
 		err error
 
@@ -21,7 +21,7 @@ var _ = Describe("RunWithFile", func() {
 		res string
 	)
 	JustBeforeEach(func() {
-		err = reverse.RunWithFile(in, out)
+		err = copy.RunWithFile(in, out)
 	})
 	Context("inが空", func() {
 		BeforeEach(func() {
@@ -40,7 +40,7 @@ var _ = Describe("RunWithFile", func() {
 		BeforeEach(func() {
 			in = bytes.NewBufferString("test")
 			out.Reset()
-			res = "tset"
+			res = "test"
 		})
 		It("inを逆にした文字が返る", func() {
 			Expect(out.String()).To(Equal(res))
@@ -54,8 +54,8 @@ var _ = Describe("RunWithFile", func() {
 			in = bytes.NewBufferString(`line1
 line2`)
 			out.Reset()
-			res = `2enil
-1enil`
+			res = `line1
+line2`
 		})
 		It("inを逆にした文字が返る", func() {
 			Expect(out.String()).To(Equal(res))
@@ -68,7 +68,7 @@ line2`)
 		BeforeEach(func() {
 			in = bytes.NewBufferString("インプット")
 			out.Reset()
-			res = "トップンイ"
+			res = "インプット"
 		})
 		It("inを逆にした文字が返る", func() {
 			Expect(out.String()).To(Equal(res))
