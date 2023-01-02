@@ -7,7 +7,6 @@ type (
 		Name() string
 		Usage() string
 		Run([]string) error
-		Example() string
 	}
 )
 
@@ -18,13 +17,15 @@ const (
 const (
 	REVERSE   CmdName = "reverse"
 	COPY      CmdName = "copy"
-	DUPLICATE CmdName = "duplicate"
+	DUPLICATE CmdName = "dup"
 	REPLACE   CmdName = "replace"
 	HELP      CmdName = "help"
 )
 
 var CmdMap = map[CmdName]Cmd{
-	HELP:    &HelpCmd{},
-	REVERSE: &ReverseCmd{},
-	COPY:    &CopyCmd{},
+	HELP:      &HelpCmd{},
+	REVERSE:   &ReverseCmd{},
+	COPY:      &CopyCmd{},
+	DUPLICATE: &DuplicateCmd{},
+	REPLACE:   &ReplaceCmd{},
 }

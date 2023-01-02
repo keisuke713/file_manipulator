@@ -46,7 +46,3 @@ func showUsage(w io.Writer) error {
 func (h *HelpCmd) Run(args []string) error {
 	return showUsage(os.Stdout)
 }
-
-func (h *HelpCmd) Example() string {
-	return fmt.Sprintf("`%s %s`", BINARY_NAME, h.Name())
-}

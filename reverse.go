@@ -30,8 +30,6 @@ func (r *ReverseCmd) Run(args []string) error {
 	// args[0]が存在すること
 	if len(args) < 1 {
 		fmt.Println("You have to pass one file name at least")
-		fmt.Println("Here is an example")
-		r.Example()
 		return nil
 	}
 	in, err = os.Open(args[0])
@@ -62,8 +60,4 @@ func (r *ReverseCmd) RunWithFile(in io.Reader, out io.Writer) error {
 	}
 	out.Write([]byte(string(rns)))
 	return nil
-}
-
-func (r *ReverseCmd) Example() string {
-	return fmt.Sprintf("`%s %s %s %s`", BINARY_NAME, r.Name(), "input.txt", "output.txt")
 }
